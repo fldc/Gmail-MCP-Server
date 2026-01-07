@@ -16,7 +16,14 @@ This guide will help you install and configure the Gmail AutoAuth MCP server for
    1. Go to Google Cloud Console (https://console.cloud.google.com)
    2. Create a new project or select an existing one
    3. Enable the Gmail API for your project
-   4. Create OAuth 2.0 credentials:
+   4. Configure OAuth Consent Screen Scopes:
+      - Go to "APIs & Services" > "OAuth consent screen"
+      - Add the following scopes:
+        * https://mail.google.com/ - Full Gmail access (required for all operations including delete)
+        * https://www.googleapis.com/auth/gmail.settings.basic - Manage basic Gmail settings (required for filters)
+      - These scopes enable all Gmail operations including sending, reading, modifying, and permanently deleting emails
+      - Save the consent screen configuration
+   5. Create OAuth 2.0 credentials:
       - Go to "APIs & Services" > "Credentials"
       - Click "Create Credentials" > "OAuth client ID"
       - Choose "Desktop app" or "Web application" type
@@ -73,6 +80,11 @@ If you encounter any issues during installation:
    - Verify ~/.gmail-mcp directory exists and has correct permissions
    - Check credentials.json was created after authentication
    - Ensure Claude Desktop configuration is properly formatted
+
+4. Insufficient Permission Errors:
+   - If you encounter "Insufficient Permission" errors, verify that the required scopes are added to your OAuth consent screen in Google Cloud Console
+   - Delete existing credentials: rm ~/.gmail-mcp/credentials.json
+   - Re-authenticate: npx @gongrzhe/server-gmail-autoauth-mcp auth
 
 ## Security Notes
 
