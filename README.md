@@ -734,7 +734,7 @@ The server includes efficient batch processing capabilities:
 
 6. **Insufficient Permission for Delete Operations**
    - If you encounter "Insufficient Permission" errors when trying to delete emails or perform other operations, you may need to:
-     1. **Verify OAuth Consent Screen Scopes**: Ensure the required scopes (`https://mail.google.com/` and `https://www.googleapis.com/auth/gmail.settings.basic`) are added to your OAuth consent screen in Google Cloud Console (see step 1b in the installation instructions)
+     1. **Verify OAuth Consent Screen Scopes**: Ensure the required scopes (`https://mail.google.com/` and `https://www.googleapis.com/auth/gmail.settings.basic`) are added to your OAuth consent screen in Google Cloud Console (see step 1b in the manual installation instructions above)
      2. **Re-authenticate**: Delete the existing credentials file: `rm ~/.gmail-mcp/credentials.json`
      3. **Run authentication again**: `npx @gongrzhe/server-gmail-autoauth-mcp auth`
    - This will request the full Gmail access scope required for delete operations and other advanced features

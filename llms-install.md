@@ -19,8 +19,8 @@ This guide will help you install and configure the Gmail AutoAuth MCP server for
    4. Configure OAuth Consent Screen Scopes:
       - Go to "APIs & Services" > "OAuth consent screen"
       - Add the following scopes:
-        * https://mail.google.com/ - Full Gmail access (required for all operations including delete)
-        * https://www.googleapis.com/auth/gmail.settings.basic - Manage basic Gmail settings (required for filters)
+        - https://mail.google.com/ - Full Gmail access (required for all operations including delete)
+        - https://www.googleapis.com/auth/gmail.settings.basic - Manage basic Gmail settings (required for filters)
       - These scopes enable all Gmail operations including sending, reading, modifying, and permanently deleting emails
       - Save the consent screen configuration
    5. Create OAuth 2.0 credentials:
