@@ -693,6 +693,7 @@ The server includes efficient batch processing capabilities:
 
 - OAuth credentials are stored securely in your local environment (`~/.gmail-mcp/`)
 - The server uses offline access to maintain persistent authentication
+- **The server requests full Gmail access (`https://mail.google.com/`) to support all operations including permanent email deletion**
 - Never share or commit your credentials to version control
 - Regularly review and revoke unused access in your Google Account settings
 - Credentials are stored globally but are only accessible by the current user
@@ -722,6 +723,12 @@ The server includes efficient batch processing capabilities:
    - **Permission Errors**: Check that the server has read access to attachment files
    - **Size Limits**: Gmail has a 25MB attachment size limit per email
    - **Download Failures**: Verify you have write permissions to the download directory
+
+6. **Insufficient Permission for Delete Operations**
+   - If you encounter "Insufficient Permission" errors when trying to delete emails, you need to re-authenticate
+   - Delete the existing credentials file: `rm ~/.gmail-mcp/credentials.json`
+   - Run authentication again: `npx @gongrzhe/server-gmail-autoauth-mcp auth`
+   - This will request the full Gmail access scope required for delete operations
 
 ## Contributing
 
