@@ -46,7 +46,15 @@ npx -y @smithery/cli install @gongrzhe/server-gmail-autoauth-mcp --client claude
       - Create a new project or select an existing one
       - Enable the Gmail API for your project
 
-   b. Create OAuth 2.0 Credentials:
+   b. Configure OAuth Consent Screen Scopes:
+      - Go to "APIs & Services" > "OAuth consent screen"
+      - Add the following scopes to your OAuth consent screen:
+        - `https://mail.google.com/` - Full Gmail access (required for all operations including delete)
+        - `https://www.googleapis.com/auth/gmail.settings.basic` - Manage basic Gmail settings (required for filters)
+      - These scopes enable the server to perform all Gmail operations including sending, reading, modifying, and permanently deleting emails
+      - Save the consent screen configuration
+
+   c. Create OAuth 2.0 Credentials:
       - Go to "APIs & Services" > "Credentials"
       - Click "Create Credentials" > "OAuth client ID"
       - Choose either "Desktop app" or "Web application" as application type
@@ -725,10 +733,11 @@ The server includes efficient batch processing capabilities:
    - **Download Failures**: Verify you have write permissions to the download directory
 
 6. **Insufficient Permission for Delete Operations**
-   - If you encounter "Insufficient Permission" errors when trying to delete emails, you need to re-authenticate
-   - Delete the existing credentials file: `rm ~/.gmail-mcp/credentials.json`
-   - Run authentication again: `npx @gongrzhe/server-gmail-autoauth-mcp auth`
-   - This will request the full Gmail access scope required for delete operations
+   - If you encounter "Insufficient Permission" errors when trying to delete emails or perform other operations, you may need to:
+     1. **Verify OAuth Consent Screen Scopes**: Ensure the required scopes (`https://mail.google.com/` and `https://www.googleapis.com/auth/gmail.settings.basic`) are added to your OAuth consent screen in Google Cloud Console (see step 1b in the manual installation instructions above)
+     2. **Re-authenticate**: Delete the existing credentials file: `rm ~/.gmail-mcp/credentials.json`
+     3. **Run authentication again**: `npx @gongrzhe/server-gmail-autoauth-mcp auth`
+   - This will request the full Gmail access scope required for delete operations and other advanced features
 
 ## Contributing
 
